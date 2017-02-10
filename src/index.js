@@ -4,7 +4,7 @@ import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import reducers, { initialState } from './reducers';
+import reducers from './reducers';
 import Async from './middlewares/async';
 import routes from './routes';
 

@@ -25,7 +25,6 @@ class StreamList extends Component {
 	}
 
 	render() {
-		console.log(this.props.twitchStreams)
 		return (
 			<div style={{ height: '70vh', overflow: 'auto' }}>
 				{this.renderStreamList()}
