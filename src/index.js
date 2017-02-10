@@ -8,10 +8,12 @@ import reducers from './reducers';
 import Async from './middlewares/async';
 import routes from './routes';
 
+import App from './components/app';
+
 const createStoreWithMiddleware = applyMiddleware(Async)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
-		<Router history={browserHistory} routes={routes} />
+		<App />
 	</Provider>
 , document.getElementById('main-container'));
