@@ -38,9 +38,9 @@ class Navigation extends Component {
 					<select className="select-viewers">
 						<option value="" selected="selected">Filter Viewers</option>
 						<option value="0 500">0-500 Viewers</option>
-						<option value="500 1000">500-1000 Viewers</option>
-						<option value="1000 2000">1000-2000 Viewers</option>
-						<option value="2000 5000">2000-5000 Viewers</option>
+						<option value="501 1000">501-1000 Viewers</option>
+						<option value="1001 2000">1001-2000 Viewers</option>
+						<option value="2001 5000">2001-5000 Viewers</option>
 						<option value="5001">5001+ Viewers</option>
 					</select>
 					<input

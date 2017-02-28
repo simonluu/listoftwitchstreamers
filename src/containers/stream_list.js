@@ -12,7 +12,7 @@ class StreamList extends Component {
 			return this.props.twitchStreams.data.streams.map((stream) => {
 				const lowerViewer = parseInt(this.props.viewers.split(" ")[0]);
 				const higherViewer = parseInt(this.props.viewers.split(" ")[1]);
-				if (this.props.viewers === "" || lowerViewer === 5001 && stream.viewers > lowerViewer || stream.viewers > lowerViewer && stream.viewers < higherViewer) {
+				if (this.props.viewers === "" || lowerViewer === 5001 && stream.viewers >= lowerViewer || stream.viewers >= lowerViewer && stream.viewers <= higherViewer) {
 					return (
 						<div style={{ marginBottom: '5px' }}>
 							<Image src={stream.preview.small} height="45px" width="80px" />
