@@ -17,7 +17,7 @@ h1 {
 	width: 55%;
 }
 
-.stream_item {
+.stream-item {
 	display: inline-block;
 	margin-left: 5px;
 }
@@ -37,4 +37,10 @@ a {
 a:hover {
 	color: black;
 	text-decoration: none;
+}
+
+.select-viewers {
+	height: 34px;
+	float: left;
+	margin-right: 5px;
 }

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { FETCH_STREAMS } from '../actions';
+import { FETCH_STREAMS, PASS_VIEWERS } from '../actions';
 
 function twitchStreams(state = {}, action) {
 	switch (action.type) {
@@ -11,8 +11,18 @@ function twitchStreams(state = {}, action) {
 	}
 }
 
+function viewers(state = "", action) {
+	switch (action.type) {
+		case PASS_VIEWERS:
+			return action.payload;
+		default:
+			return state;
+	}
+}
+
 const rootReducer = combineReducers({
-	twitchStreams
+	twitchStreams,
+	viewers
 });
 
 export default rootReducer;

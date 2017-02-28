@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_STREAMS = 'FETCH_STREAMS';
+export const PASS_VIEWERS = 'PASS_VIEWERS';
 
 //3umzyhx6l86z21ctxe44tw9o4i4cyg
 export function fetchFeaturedStreams() {
@@ -17,6 +18,15 @@ export function fetchStreams(game) {
 
 	return {
 		type: FETCH_STREAMS,
+		payload: request
+	}
+}
+
+export function passFilteredViewers(viewers) {
+	const request = viewers;
+
+	return {
+		type: PASS_VIEWERS,
 		payload: request
 	}
 }

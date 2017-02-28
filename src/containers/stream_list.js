@@ -8,25 +8,29 @@ class StreamList extends Component {
 	}
 
 	renderStreamList() {
-		if (this.props.twitchStreams.twitchStreams.data) {
-			return this.props.twitchStreams.twitchStreams.data.streams.map((stream) => {
-				return (
-					<div style={{ marginBottom: '5px' }}>
-						<Image src={stream.preview.small} height="45px" width="80px" />
-						<span className='stream_item'>
-							<a target="_blank" href={stream.channel.url}>{stream.channel.status}</a>
-							<p>Streamer: {stream.channel.display_name}, Game: {stream.game}</p>
-							<p>Viewers: {stream.viewers}</p>
-						</span>
-					</div>
-				);
+		if (this.props.twitchStreams.data) {
+			return this.props.twitchStreams.data.streams.map((stream) => {
+				const lowerViewer = parseInt(this.props.viewers.split(" ")[0]);
+				const higherViewer = parseInt(this.props.viewers.split(" ")[1]);
+				if (this.props.viewers === "" || lowerViewer === 5001 && stream.viewers > lowerViewer || stream.viewers > lowerViewer && stream.viewers < higherViewer) {
+					return (
+						<div style={{ marginBottom: '5px' }}>
+							<Image src={stream.preview.small} height="45px" width="80px" />
+							<span className='stream-item'>
+								<a target="_blank" href={stream.channel.url}>{stream.channel.status}</a>
+								<p>Streamer: {stream.channel.display_name}, Game: {stream.game}</p>
+								<p>Viewers: {stream.viewers}</p>
+							</span>
+						</div>
+					);
+				}
 			});
 		}
 	}
 
 	render() {
 		return (
-			<div style={{ height: '70vh', overflow: 'auto' }}>
+			<div style={{ height: '65vh', overflow: 'auto' }}>
 				{this.renderStreamList()}
 			</div>
 		);
@@ -34,7 +38,7 @@ class StreamList extends Component {
 }
 
 function mapStateToProps(state) {
-	return { twitchStreams: state }
+	return { twitchStreams: state.twitchStreams, viewers: state.viewers }
 }
 
 export default connect(mapStateToProps)(StreamList);

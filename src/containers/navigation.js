@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-import { fetchStreams } from '../actions';
+import { fetchFeaturedStreams, fetchStreams, passFilteredViewers } from '../actions';
 
 class Navigation extends Component {
 	constructor(props) {
@@ -20,17 +20,31 @@ class Navigation extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		this.props.fetchStreams(encodeURIComponent(this.state.term))
-		this.setState({ term: '' });
+		this.props.passFilteredViewers(document.querySelector(".select-viewers").value);
+
+		if (!this.state.term) {
+			this.props.fetchFeaturedStreams();
+		} else {
+			this.props.fetchStreams(encodeURIComponent(this.state.term));
+			this.setState({ term: '' });
+		}
 	}
 
 	render() {
 		return (
 			<div>
-				<h1><a href="http://simonluu.com">List of Twitch Streamers</a></h1>
-				<form onSubmit={this.handleSubmit} className='input-group' style={{ float: 'right', width: '45%', marginTop: '25px' }}>
+				<h1 className="title"><a href="http://simonluu.com">List of Twitch Streamers</a></h1>
+				<form onSubmit={this.handleSubmit} className='input-group' style={{ float: 'right', width: '39%', marginTop: '25px' }}>
+					<select className="select-viewers">
+						<option value="" selected="selected">Filter Viewers</option>
+						<option value="0 500">0-500 Viewers</option>
+						<option value="500 1000">500-1000 Viewers</option>
+						<option value="1000 2000">1000-2000 Viewers</option>
+						<option value="2000 5000">2000-5000 Viewers</option>
+						<option value="5001">5001+ Viewers</option>
+					</select>
 					<input
-						style={{ width: '82%' }}
+						style={{ width: '50%' }}
 						placeholder="Search for a Game"
 						className="form-control input-class"
 						value={this.state.term}
@@ -44,4 +58,4 @@ class Navigation extends Component {
 	}
 }
 
-export default connect(null, { fetchStreams })(Navigation);
+export default connect(null, { fetchFeaturedStreams, fetchStreams, passFilteredViewers })(Navigation);
