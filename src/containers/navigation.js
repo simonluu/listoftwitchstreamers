@@ -35,8 +35,8 @@ class Navigation extends Component {
 			<div>
 				<h1 className="title"><a href="http://simonluu.com">List of Twitch Streamers</a></h1>
 				<form onSubmit={this.handleSubmit} className='input-group' style={{ float: 'right', width: '39%', marginTop: '25px' }}>
-					<select className="select-viewers">
-						<option value="" selected="selected">Filter Viewers</option>
+					<select className="select-viewers" defaultValue="">
+						<option value="">Filter Viewers</option>
 						<option value="0 500">0-500 Viewers</option>
 						<option value="501 1000">501-1000 Viewers</option>
 						<option value="1001 2000">1001-2000 Viewers</option>

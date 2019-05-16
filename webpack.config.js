@@ -1,33 +1,51 @@
-var webpack = require('webpack');
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: './src/index.js',
-  output: { path: __dirname, publicPath: '/', filename: 'bundle.js' },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'stage-0', 'react']
+        use: {
+          loader: "babel-loader"
         }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'production'
+            }
+          },
+          'css-loader'
+        ]
       }
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
     }),
-    new webpack.optimize.UglifyJsPlugin()
-  ],
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
-  }
+    new MiniCssExtractPlugin({
+      filename: './index.css'
+    })
+  ]
 };

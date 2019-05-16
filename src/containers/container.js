@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 

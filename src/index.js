@@ -10,6 +10,8 @@ import routes from './routes';
 
 import App from './components/app';
 
+import './style/index.css';
+
 const createStoreWithMiddleware = applyMiddleware(Async)(createStore);
 
 ReactDOM.render(
